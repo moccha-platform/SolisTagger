@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --text: black;
+    --background: white;
+    --text-rgb: 0,0,0;
+    --background-rgb: 255,255,255;
+    --active: #0080FF;
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Poppins';
+    color: var(--text);
+    margin: 0;
+}
+
+html {
+    margin: 0;
+    background: var(--background);
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+
+p, span {
+    font-weight: 400;
+}
+
+.icon {
+    font-family: 'Solis Falco Icons';
+}
+
+.active {
+    color: var(--active);
+}
+
+.dimmed {
+    color: rgba(var(--text-rgb), 0.5);
+}
+
+body {
+    color: var(--text);
+    background-color: var(--background);
+    animation: 0.4s linear ease-in;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: white;
+        --background: black;
+        --text-rgb: 255,255,255;
+        --background-rgb: 0,0,0;
+    }
+}
+
+@font-face {
+    font-family: 'Solis Falco Icons';
+    font-weight: normal;
+    src: url('./assets/SolisFalcoIcons.ttf');
+}
+
+.ease-in {
+    animation: 1s cubic-bezier(1,0,0,1) ease-in;
+}
+
+@keyframes ease-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}

@@ -1,0 +1,173 @@
+<div *ngIf="matchs">
+    <div class="in" id="error" style="width: 100vw; height: 100vh; background: var(--background);" *ngIf="noMatchs">
+        <div class="modal" style="z-index: 101; box-shadow: 0px 0px 0px 0px transparent;">
+            <h1 class="icon active">cancel_circle</h1>
+            <h2>No se han encontrado coincidencias</h2>
+            <p>¿Deseas crear una etiqueta manualmente?</p>
+            <div style="width: 100%; display: flex; flex-direction: row; justify-content: center; margin-top: 10px;">
+                <app-button (click)="GenPlaceholder()" [btnArg]="{ text: 'Si'}" style="margin-right: 10px;"></app-button>
+                <app-button title="Volver a la pantalla principal" (click)="router.navigate(['load'])" [btnArg]="{ text: 'No'}" style="margin-left: 10px;">z</app-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="in" id="searching" style="width: 100vw; height: 100vh; background: var(--background);" *ngIf="searching">
+    <div id="searching" class="modal" style="z-index: 101; box-shadow: 0px 0px 0px 0px transparent;">
+        <h1 class="icon active">search</h1>
+        <h1>Buscando coincidencias</h1>
+        <p class="dimmed">Este proceso no llevará demasiado tiempo</p>
+    </div>
+</div>
+
+
+
+
+<div class="in" style="display: flex; flex-direction: row;">
+    <div id="matchGallery">
+        <div [routerLink]="['/load']" style="display: flex; flex-direction: row; align-items: center; align-self: flex-start; margin: 20px 0px 10px 20px; cursor: pointer">
+            <h4 class="icon" style="margin-right: 10px;" title="Volver">chevron_left</h4>
+            <h2>Volver</h2>
+        </div>
+        <div *ngIf="matchs" style="display: flex; align-items: center; flex-direction: column; flex-wrap: wrap;">
+            <app-button (click)="GenPlaceholder()" [btnArg]="{icon: 'notification_alt', text: 'Nueva etiqueta'}" style="margin-bottom: 20px;"></app-button>
+            <div class="match" *ngFor="let item of matchs.data; index as i" (click)="ChangeCurrentMatch(i)">
+                <img class="in" [src]="item.album.cover_medium" [title]="item.album.title">
+                <div class="in">
+                    <div class="ellipsis" style="width: 100%; font-size: 16pt; font-weight: 700;" [title]="item.title">{{item.title}}</div>
+                    <div class="ellipsis" [title]="item.artist.name">{{item.artist.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings" class="modal in" style="align-items: flex-start; display: none;">
+        <h1><span class="icon active">settings_gear_alt</span> Configuración</h1>
+        <p>Resolución de las carátulas: 1000px</p>
+        <p class="dimmed">La resolución máxima de las carátulas es de 10000 píxeles, usar este tamaño hará que el archivo de imagen pese mucho más.</p>
+
+        <input type="range" list="tickmarks" step="10">
+        <datalist id="tickmarks">
+            <option value="0" label="0%">
+            <option value="10">
+            <option value="20">
+            <option value="30">
+            <option value="40">
+            <option value="50" label="50%">
+            <option value="60">
+            <option value="70">
+            <option value="80">
+            <option value="90">
+            <option value="100" label="100%">
+        </datalist>
+    </div>
+
+    <div class="in" id="confirm" *ngIf="confirmation && currentMatch">
+        <div class="modal" style="box-shadow: 0px 0px 0px 0px transparent;">
+            <h1 class="icon active">label</h1>
+            <h1>¿Deseas etiquetar esta canción?</h1>
+            <p>{{currentMatch.title}} de {{currentMatch.artist.name}}</p>
+            <div style="width: 100%; display: flex; flex-direction: row; justify-content: center; margin-top: 10px;">
+                <app-button (click)="tag()" [btnArg]="{ text: 'Si'}" style="margin-right: 10px;"></app-button>
+                <app-button (click)="confirm(false)" [btnArg]="{ text: 'No'}" style="margin-left: 10px;">z</app-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current match panel -->
+    <div id="currentMatchPanel" style="position: relative;">
+
+        <div class="in modal" id="TagHelp" style="z-index: 100;" *ngIf="TagHelp">
+            <h1 class="icon active">label</h1>
+            <h2>Etiqueta personalizada</h2>
+            <p>Las etiquetas personalizadas se crean de forma manual.
+                <br>Si no se incluye una carátula, no se añadirá la de muestra a la etiqueta.
+                <br>Rellena algunos datos y pulsa "Volver a buscar" para encontrar nuevas etiquetas.
+            </p>
+            <div style="width: 100%; display: flex; flex-direction: row; justify-content: center; margin-top: 10px;">
+                <app-button (click)="TagHelp = false; cdRef.detectChanges()" [btnArg]="{ text: 'Entendido'}" style="margin-left: 10px;">z</app-button>
+            </div>
+        </div>
+
+        <!-- ngIf not match selected -->
+        <div class="modal in" *ngIf="!currentMatch" style="width: fit-content; box-shadow: 0px 0px 0px transparent;">
+            <h1 class="icon dimmed">label</h1>
+            <h2 class="dimmed">Selecciona una etiqueta</h2>
+        </div>
+
+        <!-- ngIf match selected -->
+        <div class="in" *ngIf="currentMatch" id="currentMatch">
+
+
+            <div class="in" id="artist">
+                <img class="in invert" style="border-radius: 100%; width: 50px; height: 50px; filter: invert(var(--darkmode));" *ngIf="!currentMatch.artist.picture_small && !currentMatch.customTag" src="./assets/artist_alt.png">
+                <img class="in" style="border-radius: 100%; width: 50px; height: 50px;" *ngIf="currentMatch.artist.picture_small && !currentMatch.customTag" [src]="currentMatch.artist.picture_small" onerror="this.src = './assets/artist_alt.png'">
+                <div class="ellipsis in" style="margin-left: 10px; width: 100%; font-size: 18pt; font-weight: 700;">{{currentMatch.artist.name}}</div>
+                <p class="in active" *ngIf="findingCover" style="width: 300px; text-align: right;">Procesando carátula</p>
+                <h2 class="in icon active rotate" *ngIf="findingCover" style="margin-left: 10px;">reload</h2>
+                <h2 *ngIf="currentMatch.customTag" (click)="TagHelp = true; cdRef.detectChanges()" class="in icon active" style="margin-left: 15px; cursor: pointer;">info</h2>
+                <h2 class="in icon active" style="margin-left: 15px;">settings_gear_alt</h2>
+            </div>
+            <div class="in" id="tag">
+                <!-- <input type="file" #fileInput accept="image/jpg, image/png, image/jpeg" hidden/> -->
+                <img class="in" id="cover" [src]="currentMatch.album.cover_big" (click)="openFileDialog()">
+                <div *ngIf="!editMode && !details" style="margin-top: 20px;width: 70%; text-align: center;" class="in ellipsis title32">{{currentMatch.title}}</div>
+                <div *ngIf="!editMode && !details" style="width: 70%; text-align: center; font-size: 24pt;" class="in ellipsis">{{currentMatch.album.title}}</div>
+                <app-button (click)="toggleDetails()" class="in" *ngIf="!editMode && !details" [btnArg]="{text: 'Detalles'}" style="margin-top: 20px;"></app-button>
+
+                <div class="in" id="editMode" *ngIf="editMode" style="margin-top: 30px; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-evenly; width: 100%;">
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'text', value: currentMatch.title, placeholder: 'Título'}" (value)="output($event, 'TrackTitle')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'text', value: currentMatch.album.title, placeholder: 'Album'}" (value)="output($event, 'AlbumTitle')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'text', value: currentMatch.artist.name, placeholder: 'Artista'}" (value)="output($event, 'ArtistName')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'text', value: currentMatch.genre, placeholder: 'Género'}" (value)="output($event, 'Genre')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'number', min: 1, max: 9999, value: currentMatch.album.date, placeholder: 'Año'}" (value)="output($event, 'Date')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'number', min: 1, value: currentMatch.album.track_count, placeholder: 'Número de tracks del album'}" (value)="output($event, 'TrackAlbumCount')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'number', min: 1, value: currentMatch.number, placeholder: 'Número de pista en album'}" (value)="output($event, 'TrackCount')"></app-input-text>
+                    <app-input-text style="width: 200px;" [inputArg]="{type: 'number', min: 0, max: 999, value: currentMatch.bpm, placeholder: 'BPM'}" (value)="output($event, 'BPM')"></app-input-text>
+                </div>
+
+                <div class="in" id="details" *ngIf="details" (click)="editSwitch()" style="margin-top: 30px; cursor: pointer;">
+                    <div>
+                        <h5>Título de la pista:</h5>
+                        <h5>{{currentMatch.title}}</h5>
+                    </div>
+                    <div>
+                        <h5>Nombre del album:</h5>
+                        <h5>{{currentMatch.album.title}}</h5>
+                    </div>
+                    <div>
+                        <h5>Nombre del artista:</h5>
+                        <h5>{{currentMatch.artist.name}}</h5>
+                    </div>
+                    <div>
+                        <h5>Género:</h5>
+                        <h5>{{currentMatch.genre}}</h5>
+                    </div>
+                    <div>
+                        <h5>Año:</h5>
+                        <h5>{{currentMatch.album.date}}</h5>
+                    </div>
+                    <div>
+                        <h5>Número de tracks en el album:</h5>
+                        <h5>{{currentMatch.album.track_count}}</h5>
+                    </div>
+                    <div>
+                        <h5>Número de pista:</h5>
+                        <h5>{{currentMatch.number}}</h5>
+                    </div>
+                    <div>
+                        <h5>Tempo (BPM):</h5>
+                        <h5>{{currentMatch.bpm}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%; display: flex; justify-content: space-between;/*  margin-top: auto; */ padding: 10px 0px;">
+                <app-button *ngIf="!editMode && details" (click)="closeDetails()" [btnArg]="{icon: 'cancel_circle', text: 'Ocultar detalles'}"></app-button>
+                <app-button *ngIf="editMode && !details" (click)="editSwitch()" [btnArg]="{icon: 'done_circle', text: 'Guardar'}"></app-button>
+                <app-button *ngIf="!editMode && !details" (click)="editSwitch()" [btnArg]="{icon: 'edit', text: 'Editar'}"></app-button>
+                <app-button *ngIf="currentMatch.customTag" (click)="Custom()" [btnArg]="{ icon: 'reload', text: 'Volver a buscar'}"></app-button>
+                <app-button (click)="confirm(true)" [btnArg]="{icon: 'label', text: 'Etiquetar'}"></app-button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,15 +1,51 @@
-<div class="" style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-">
-    <h1 class="icon active" style="font-size: 32pt;">file</h1>
-    <h2>Arrastra un archivo</h2>
-    <!-- <p class="dimmed">Asegúrate de que sea un archivo mp3 compatible</p> -->
+<div class="in">
+
+    <div class="modal in" style="display: none">
+        <p style="margin-right: auto;">Color de acento</p>
+        <div style="display: flex; justify-content: space-around; flex-direction: row; width: 100%;">
+            <div class="color" style="background: var(--accent);"></div>
+            <div class="color" style="background: red;"></div>
+            <div class="color" style="background: rebeccapurple;"></div>
+            <div class="color" style="background: green;"></div>
+        </div>
+        <p style="margin-right: auto;">Rango de coincidencias</p>
+        <app-range-slider></app-range-slider>
+        <p class="dimmed" style="margin-right: auto; text-align: left;">Este rango representa el grado de coincidencia entre el nombre de la canción y las pistas encontradas.<br>A mayor sea este rango, las coincidencias serán peores.</p>
+    </div>
+    <div *ngIf="error" class="modal in">
+        <h1 class="icon active">notification</h1>
+        <h2>Error</h2>
+        <p>No se puede etiquetar este elemento. <br>Vuelve a intentarlo con otro.</p>
+        <app-button (click)="cancel()" [btnArg]="{text: 'Aceptar'}" style="margin-top: 20px;"></app-button>
+    </div>
+
+    <div *ngIf="currentFile" class="modal in">
+        <h1 class="icon active">label</h1>
+        <h2>Confirmación</h2>
+        <p>¿Quieres etiquetar esta canción?</p>
+        <div class="ellipsis" style="width: 100%;">{{currentFile.name}}</div>
+        <div style="margin-top: 20px;">
+            <app-button (click)="confirm()" [btnArg]="{text: 'Si'}" style="margin-right: 10px"></app-button>
+            <app-button (click)="cancel()" [btnArg]="{text: 'No'}" style="margin-left: 10px"></app-button>
+            
+        </div>
+    </div>
+
+    <div style="width: 100vw; height: 100vh;" appDragndrop (onFileDropped)="drop($event)">
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        ">
+            <h1 class="icon active t-icon">file</h1>
+            <h1>Arrastra un archivo</h1>
+        </div>
+    </div>
+
 </div>

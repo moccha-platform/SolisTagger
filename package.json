@@ -1,45 +1,64 @@
 {
   "name": "solis-tagger",
-  "version": "0.0.0",
+  "description": "Sencillo etiquetador ID3 para canciones.",
+  "version": "0.0.1",
+  "main": "main.js",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build": "cd frontend && ng build --prod",
+    "start": "electron .",
+    "buildLinuxARMV7l": "electron-builder --linux --armv7l",
+    "buildLinux64": "electron-builder --linux --x64",
+    "buildLinuxia32": "electron-builder --linux --ia32",
+    "buildWindowsx64": "electron-builder --windows --x64",
+    "buildWindowsia32": "electron-builder --windows --ia32",
+    "buildmacOS": "electron-builder --macos --x64"
   },
-  "private": true,
+  "author": "Marcos Rodríguez <marcosylrg@gmail.com>",
   "dependencies": {
-    "@angular/animations": "~11.0.5",
-    "@angular/common": "~11.0.5",
-    "@angular/compiler": "~11.0.5",
-    "@angular/core": "~11.0.5",
-    "@angular/forms": "~11.0.5",
-    "@angular/platform-browser": "~11.0.5",
-    "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "colors": "^1.4.0",
+    "deezer-public-api": "^1.0.4",
+    "node-fetch": "^2.6.1",
+    "node-id3": "^0.2.2",
+    "searchitunes": "^2.4.0",
+    "string-similarity": "^4.0.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.5",
-    "@angular/cli": "~11.0.5",
-    "@angular/compiler-cli": "~11.0.5",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
-    "codelyzer": "^6.0.0",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.1.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "electron": "^12.0.5",
+    "electron-builder": "^22.10.5"
+  },
+  "build": {
+    "productName": "Solis Tagger",
+    "appId": "com.solis.tagger",
+    "asar": true,
+    "directories": {
+      "output": "/Users/marcos/Desktop/output"
+    }, 
+    "dmg": {
+      "contents": [
+        {
+          "x": 131,
+          "y": 210
+        },
+        {
+          "x": 370,
+          "y": 210,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "icon": "build/icon.icns",
+      "background": "build/background.png"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "icon": "build/icon.icns"
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
   }
 }

@@ -1,0 +1,30 @@
+:host {
+    display: inline-block;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    background: rgba(var(--text-rgb), 0.2);
+    border-radius: 5px;
+    outline: none;
+    overflow: hidden;
+}
+
+input::-webkit-slider-thumb {
+    transition: ease-in-out 0.2s;
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text);
+    cursor: pointer;
+    border: 0px solid var(--accent);
+    box-shadow: -407px 0 0 400px var(--accent);
+}
+
+input::-webkit-slider-thumb:hover {
+    border: 1px solid var(--accent);
+}

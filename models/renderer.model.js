@@ -51,10 +51,10 @@ class Renderer {
         this.process.setMenu(null);
         this.process.setMenuBarVisibility(null);
         // Dev env.
-        this.process.loadURL('http://localhost:4200/load');
+        //this.process.loadURL('http://localhost:4200/load');
         //this.process.toggleDevTools();
         // Prod env.
-        //this.process.loadFile(`ui/index.html`);
+        this.process.loadFile(`ui/index.html`);
         this.ipcEvents();
 
         app.on('window-all-closed', () => {

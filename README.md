@@ -1,27 +1,24 @@
-# SolisTagger
+<center>
+<img src="./build/icon.png" width="100">
+<h1>Solis Tagger</h1>
+</center>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+Solis Tagger es un etiquetador ID3v2 para añadir metadatos a cualquier elemento mp3, forma parte del módulo de etiquetado de Solis.
 
-## Development server
+Está desarrollado con electron para que pueda ser usado en cualquier plataforma. La interfaz está basada en Angular usando componentes de Solis Falco UI y el paquete de [iconos de Solis](https://github.com/marcosrg9/Solis-Falco-Icons).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## ⚠️ Versión alpha
 
-## Code scaffolding
+El funcionamiento base de la aplicación está preparado, pero todavía faltan muchos detalles que arreglar e implementar.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📦 Builds
 
-## Build
+Puede encontrar las versiones compiladas para todas las plataformas [desde este enlace](https://github.com/marcosrg9/Solis-Falco-Icons/releases).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## ⚙️ Funcionamiento
 
-## Running unit tests
+Implementa la funcionalidad Drag&Drop en la ruta load (primera pantalla) y comprueba si dicho archivo es MP3 y puede ser etiquetado.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+El servidor recoge la ruta, retira la extensión y busca en iTunes por el nombre del elemento (archivo), de todas las coincidencias, realiza un filtrado con el [coeficiente de Dice](https://es.wikipedia.org/wiki/Coeficiente_de_Sorensen-Dice), de esto se encarga el módulo [string-similarity](https://www.npmjs.com/package/string-similarity), en esta versión, el algoritmo debe devolver un resultado no inferior a 0.6, todas las coincidencias que no alcancen este nivel, serán descartadas. En futuras versiones, el usuario tendrá la opción de establecer el nivel de similaridad mínimo.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+La inferfaz gráfica se adapta al modo oscuro del sistema si este se encuentra activado, por defecto en modo claro.

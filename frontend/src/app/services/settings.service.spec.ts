@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IpcService } from './ipc.service';
+import { SettingsService } from './settings.service';
 
-describe('IpcService', () => {
-  let service: IpcService;
+describe('SettingsService', () => {
+  let service: SettingsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IpcService);
+    service = TestBed.inject(SettingsService);
   });
 
   it('should be created', () => {

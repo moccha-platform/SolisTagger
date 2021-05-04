@@ -1,77 +1,166 @@
-/* You can add global styles to this file, and also import other style files */
-
 :root {
-    --text: black;
     --background: white;
-    --text-rgb: 0,0,0;
     --background-rgb: 255,255,255;
-    --active: #0080FF;
+    --text: black;
+    --text-rgb: 0,0,0;
+    --accent: #0080FF;
+    --done: #00da74;
+    --darkmode: 0;
 }
 
 * {
+    font-family: 'Poppins';
+    font-weight: 400;
+    margin: 0;
     user-select: none;
     -webkit-user-select: none;
-    font-family: 'Poppins';
-    color: var(--text);
-    margin: 0;
+    user-drag: none;
+    -webkit-user-drag: none;
 }
 
 html {
-    margin: 0;
     background: var(--background);
+    color: var(--text);
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
 }
 
 h1, h2 {
     font-weight: 700;
 }
 
-p, span {
-    font-weight: 400;
-}
-
 .icon {
     font-family: 'Solis Falco Icons';
 }
 
+.title24 {
+    font-size: 24pt;
+    font-weight: 700;
+}
+
+.title32 {
+    font-size: 32pt;
+    font-weight: 700;
+
+}
+
+.t-icon {
+    font-size: 38pt;
+    margin-bottom: 10px;
+}
+
 .active {
-    color: var(--active);
+    color: var(--accent);
+}
+
+.modal {
+    background: rgba(var(--background-rgb), 0.7);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
 }
 
 .dimmed {
-    color: rgba(var(--text-rgb), 0.5);
+    color: rgba(var(--text-rgb), 0.1);
 }
 
-body {
-    color: var(--text);
-    background-color: var(--background);
-    animation: 0.4s linear ease-in;
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.invert {
+    filter: invert(var(--darkmode));
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text: white;
         --background: black;
-        --text-rgb: 255,255,255;
         --background-rgb: 0,0,0;
+        --text: white;
+        --text-rgb: 255,255,255;
+        --darkmode: 1;
     }
 }
 
-@font-face {
-    font-family: 'Solis Falco Icons';
-    font-weight: normal;
-    src: url('./assets/SolisFalcoIcons.ttf');
+@media (prefers-reduced-motion) {
+    .in {
+        animation: linear 0s in;
+    }
 }
 
-.ease-in {
-    animation: 1s cubic-bezier(1,0,0,1) ease-in;
+.in {
+    animation: linear 0.2s in;
 }
 
-@keyframes ease-in {
+@keyframes in {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
     }
+}
 
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  .rotate {
+    -webkit-animation: rotate 2s linear infinite;
+    -moz-animation: rotate 2s linear infinite;
+    -ms-animation: rotate 2s linear infinite;
+    -o-animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite;
+  }
+
+@font-face {
+    font-family: 'Solis Falco Icons';
+    font-weight: bold;
+    src: url('./assets/SolisFalcoIcons.ttf');
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

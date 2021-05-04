@@ -1,0 +1,42 @@
+:host {
+    display: inline-block;
+    width: auto;
+}
+
+#button {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    border: 2px solid var(--text);
+    color: var(--text);
+    border-radius: 40px;
+    text-align: center;
+    cursor: pointer;
+    padding: 7px 30px;
+    box-sizing: border-box;
+    min-height: fit-content;
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+#button:hover {
+    background-color: var(--text);
+    color: var(--background);
+}
+
+#button:focus,
+#button:active {
+    transition: ease-in-out 0.05s;
+    border: 2px solid var(--accent);
+    background-color: var(--accent);
+    color: white;
+}
+
+#button:active ~ #button::placeholder {
+    color: white;
+}
+
+.icon {
+    padding: 0px 10px 0px 0px;
+}

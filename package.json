@@ -1,10 +1,10 @@
 {
   "name": "solis-tagger",
   "description": "Sencillo etiquetador ID3 para canciones.",
-  "version": "0.0.1",
+  "version": "0.0.1.1",
   "main": "main.js",
   "scripts": {
-    "build": "cd frontend && ng build --prod",
+    "build": "cd frontend && ng build --prod --outputPath='../ui'",
     "start": "electron .",
     "buildLinuxARMV7l": "electron-builder --linux --armv7l",
     "buildLinux64": "electron-builder --linux --x64",
@@ -31,8 +31,8 @@
     "appId": "com.solis.tagger",
     "asar": true,
     "directories": {
-      "output": "/Users/marcos/Desktop/output"
-    }, 
+      "output": "../output"
+    },
     "dmg": {
       "contents": [
         {

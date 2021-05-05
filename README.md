@@ -13,7 +13,7 @@ El funcionamiento base de la aplicación está preparado, pero todavía faltan m
 
 ## 📦 Builds
 
-Puede encontrar las versiones compiladas para todas las plataformas [desde este enlace](https://github.com/marcosrg9/Solis-Falco-Icons/releases).
+Puede encontrar las versiones compiladas para todas las plataformas [desde este enlace](https://github.com/solis-server/SolisTagger/releases/latest).
 
 ## ⚙️ Funcionamiento
 

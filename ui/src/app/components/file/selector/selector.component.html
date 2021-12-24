@@ -1,0 +1,45 @@
+<body class="ease-in">
+    <!-- Sección de elementos válidos -->
+    <section *ngIf="(files.files | validFile).length > 0">
+        <div id="header">
+            <h3>{{ 'file.selector.items' | translate }}</h3>
+            <div>
+                <span [title]="'file.selector.add' | translate" class="iconButton" [routerLink]="['/file']">add</span>
+                <span [title]="'file.selector.tagNow' | translate" class="iconButton" [routerLink]="['/tagger']">label</span>
+            </div>
+        </div>
+
+        <div *ngFor="let file of files.files | validFile">
+            <app-list-item>
+                <div id="file">
+                    <div [attr.data-after]="file.name" OverflowDetector>{{ file.name }}</div>
+                    <span [title]="'file.selector.delete' | translate" class="iconButton" (click)="files.removeElement(file.path)">trash</span>
+                </div>
+            </app-list-item>
+        </div>
+    </section>
+
+    <!-- Sección de elementos inválidos -->
+    <section *ngIf="(files.files | validFile:false).length > 0">
+        <div id="header">
+            <h3>Elementos desconocidos</h3>
+            <div>
+                <div [routerLink]="['/files']"><span class="icon active">add</span></div>
+                <div><span class="icon active">label</span></div>
+            </div>
+        </div>
+
+        <div id="file" *ngFor="let file of files.files | validFile:false">
+
+            <div>
+                <div>
+                    <div [attr.data-after]="file.name" OverflowDetector>{{ file.name }}</div>
+                </div>
+                <div>
+                    <span class="icon" (click)="files.removeElement(file.path)">trash</span>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </section>
+</body>

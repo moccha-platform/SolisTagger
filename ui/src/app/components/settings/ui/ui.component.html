@@ -1,0 +1,54 @@
+<div id="ui">
+    <app-title-bar>
+        <h3 class="to-bottom" style="margin-left: 25px;">{{ 'settings.appearance.title' | translate }}</h3>
+    </app-title-bar>
+
+    <div class="content ease-in">
+        <span class="title">{{ 'settings.appearance.theme.title' | translate }}</span>
+        <span class="dimmed spanSubtitle">{{ 'settings.appearance.theme.info1' | translate }}</span>
+        <span class="dimmed spanSubtitle">{{ 'settings.appearance.theme.info2' | translate }}</span>
+        <div id="themeModes">
+            <app-uithememode type="light" *ngIf="!settings.params.appearance.auto" class="ease-in"
+            [ngClass]="{'selected': settings.params.appearance.mode == 'light'}"
+            [title]="'settings.appearance.theme.lightModeTitle' | translate"
+            (selected)="settings.params.appearance.mode"
+            (selectedChange)="setTheme('light')"></app-uithememode>
+
+            <app-uithememode type="dark"
+            [ngClass]="{'selected': settings.params.appearance.mode == 'dark'}"
+            [title]="'settings.appearance.theme.darkModeTitle' | translate"
+            (selected)="settings.params.appearance.mode"
+            (selectedChange)="setTheme('dark')"></app-uithememode>
+
+            <app-uithememode type="deep-dark"
+            [ngClass]="{'selected': settings.params.appearance.mode == 'deep-dark'}"
+            [title]="'settings.appearance.theme.deepDarkModeTitle' | translate"
+            (selected)="settings.params.appearance.mode"
+            (selectedChange)="setTheme('deep-dark')"></app-uithememode>
+        </div>
+        <div class="msg-switch" style="margin-top: 20px;">
+            <div>
+                <span class="spanSubtitle">{{ 'settings.appearance.auto.title' | translate }}</span>
+                <span class="dimmed spanSubtitle">{{ 'settings.appearance.auto.description' | translate }}</span>
+            </div>
+            <app-switch [(enabled)]="settings.params.appearance.auto"
+                        (enabledChange)="settings.toggleAuto()"
+                        (enabledChange)="settings.updateSettings()"></app-switch>
+        </div>
+        <div>
+            <span class="title" style="margin-top: 10px;">{{ 'settings.appearance.color.title' | translate }}</span>
+            <div class="colors">
+                <div [ngClass]="{'selectd': settings.params.appearance.primary == '#0080FF'}"
+                     (click)="settings.primary = '#0080FF'"></div>
+                <div [ngClass]="{'selectd': settings.params.appearance.primary == '#FF005C'}"
+                     (click)="settings.primary = '#FF005C'"></div>
+                <div [ngClass]="{'selectd': settings.params.appearance.primary == '#00D16D'}"
+                     (click)="settings.primary = '#00D16D'"></div>
+                <div [ngClass]="{'selectd': settings.params.appearance.primary == '#FF9700'}"
+                     (click)="settings.primary = '#FF9700'"></div>
+                <div [ngClass]="{'selectd': settings.params.appearance.primary == '#7103FF'}"
+                     (click)="settings.primary = '#7103FF'"></div>
+            </div>
+        </div>
+    </div>
+</div>

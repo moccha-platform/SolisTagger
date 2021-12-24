@@ -1,0 +1,18 @@
+{
+  "name": "uikit",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "main": "bundles/uikit.umd.js",
+  "module": "fesm2015/uikit.js",
+  "es2015": "fesm2015/uikit.js",
+  "esm2015": "esm2015/uikit.js",
+  "fesm2015": "fesm2015/uikit.js",
+  "typings": "uikit.d.ts",
+  "sideEffects": false
+}

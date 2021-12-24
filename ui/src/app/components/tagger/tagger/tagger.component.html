@@ -1,0 +1,22 @@
+<div id="cont" *ngIf="currentTag.tag">
+
+    <!-- Apple and Apple Music are trademarks of Apple Inc., registered in the U.S. and other countries -->
+    <div id="badges">
+        <!-- <span class="dimmed">Deezer</span> -->
+        <img *ngIf="currentTag.provider === 'Deezer'" class="logo" src="../../../../assets/img/Deezer_ListenOn_Badges/ES-es/es_ES-dark.png" style="height: 40px;">
+        <img (click)="tagger.openInBrowser(currentTag.tag.trackViewUrl)" *ngIf="currentTag.provider === 'iTunes'" class="logo" src="../../../../assets/img/AppleMusic_ListenOn_Badges/ES_Apple_Music_Listen_on_Badge_RGB_090120.svg" style="height: 40px">
+        <img *ngIf="currentTag.tag.trackExplicitness === 'explicit'" style="filter: invert(1); margin-left: auto; height: 40px" src="../../../../assets/img/Parental_Advisory_label.svg">
+    </div>
+    
+    <div id="tag" class="flex-column">
+        <img class="ease" id="artwork" [src]="currentTag.tag.artworkUrl500">
+        <h1 id="trackTitle" style="margin-top: 20px">{{ currentTag.tag.trackName }}</h1>
+        <h4 style="font-weight: 400;">{{ currentTag.tag.collectionName }}</h4>
+    </div>
+
+    <div id="taggerButtons">
+        <div id="edit" title="Modifica esta coincidencia" class="icon">edit</div>
+        <div id="label" title="Etiquetar el elemento con esta coincidencia" class="icon"></div>
+        <div id="cancel" title="Descartar esta coincidencia" class="icon">cancel_circle</div>
+    </div>
+</div>

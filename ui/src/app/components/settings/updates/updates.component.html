@@ -1,0 +1,46 @@
+<div id="updates">
+    <app-title-bar>
+        <h3 class="to-bottom" style="margin-left: 25px;">{{ 'settings.updates.title' | translate }}</h3>
+        <!-- <app-spinner *ngIf="!updates" style="margin-right: 25px;"></app-spinner> -->
+    </app-title-bar>
+    <div class="content ease-in">
+        <app-spinner *ngIf="!updates" [message]="'settings.updates.checking' | translate"></app-spinner>
+        <!-- Si no se está actualizando -->
+        <div *ngIf="updates && !status.updating" class="ease-in">
+            <h3 *ngIf="!updates.pending" class=""><label class="icon done" style="font-size: 140%;">done_circle</label> {{ 'settings.updates.updated' | translate }}</h3>
+            <h3 *ngIf="updates.pending" style="display: flex; align-items: center;"><label class="icon active" style="font-size: 140%; margin-right: 10px;">notification_alt</label> {{ 'settings.updates.newUpdate' | translate }}</h3>
+            <div *ngIf="updates.pending">
+                <app-message-box id="changelog">
+                    <h2 style="margin: 0;">Solis Tagger {{ updates.remote }}</h2>
+                    <h3 *ngIf="updates.changelog" style="margin: 0">{{ 'settings.updates.report.changelog' | translate }}</h3>
+                    <span *ngIf="updates.changelog" style="white-space: pre-wrap;">{{updates.changelog}}</span>
+                    <h3 *ngIf="updates.developerInfo" style="margin: 0">{{ 'settings.updates.report.developersInfo' | translate }}</h3>
+                    <span *ngIf="updates.developerInfo" style="white-space: pre-wrap;">{{updates.developerInfo}}</span>
+                </app-message-box>
+                <button (click)="update()" style="margin-top: 10px;">Descargar e instalar</button>
+            </div>
+        </div>
+        <!-- Si se está actualizando -->
+        <div class="ease-in" *ngIf="status.updating && status.status < 100">
+            <div class="flex-center-spacebetween">
+                <h3><label class="icon active">package_download</label> Descargando actualizaciones</h3>
+                <span>{{ status.status }}%</span>
+            </div>
+            <progress style="width: 100%;" max="100" [value]="status.status"></progress>
+        </div>
+        <div class="ease-in flex-perfect-center flex-column" *ngIf="status.status >= 100">
+            <h3><label class="icon done">done_circle</label> Actualización preparada</h3>
+            <span class="spanSubtitle dimmed">La actualización se instalará automáticamente cuando cierres la aplicación.</span>
+            <button style="margin-top: 10px;" [routerLink]="['/postInstall']">Forzar actualización</button>
+        </div>
+        <div style="margin-top: 10px;" class="msg-switch">
+            <div>
+                <span class="title">{{ 'settings.updates.auto.title' | translate }}</span>
+                <span class="spanSubtitle dimmed">{{ 'settings.updates.auto.description' | translate }}</span>
+            </div>
+            <app-switch [(enabled)]="settings.params.updates.autoUpdate"></app-switch>
+        </div>
+        <span style="margin-top: 10px;" class="spanSubtitle dimmed">{{ 'settings.updates.lastCheck' | translate }}: {{ 'settings.updates.yesterday' | translate }} 12:40</span>
+        <span *ngIf="systemInfo" class="spanSubtitle dimmed">{{ 'settings.updates.current' | translate }}: {{ systemInfo.app.version }}</span>
+    </div>
+</div>

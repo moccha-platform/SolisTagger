@@ -1,0 +1,113 @@
+<div id="search">
+    
+    <app-title-bar>
+        <h3 class="to-bottom" style="margin-left: 25px;">{{ 'settings.search.title' | translate }}</h3>
+    </app-title-bar>
+
+    <div class="content ease-in">
+
+        <!-- Ajuste de rango del filtro. -->
+        <div id="filter">
+            <div class="flex-center-spacebetween">
+                <span id="filter-status" class="title">{{ 'settings.search.matchFilter.matchFilterTitle' | translate }}</span>
+                <span *ngIf="settings.params.search.filter > 0 && settings.params.search.filter < 100">
+                    {{ settings.params.search.filter }}%
+                </span>
+                <span *ngIf="settings.params.search.filter < 1">{{ 'settings.search.matchFilter.disabled' | translate }}</span>
+                <span *ngIf="settings.params.search.filter > 99">{{ 'settings.search.matchFilter.strict' | translate }}</span>
+            </div>
+        </div>
+        <input type="range" min="0" max="100"
+        [(ngModel)]="settings.params.search.filter"
+        (ngModelChange)="recalcDice()"
+        (ngModelChange)="settings.updateSettings()"
+        >
+
+        <!-- Parámetros del filtro (cuando está activo) -->
+
+        <!-- Mensajes de estado del filtro -->
+
+        <div *ngIf="settings.params.search.filter > 0" class="ease-in" style="margin-top: 10px;;">
+            <!-- Normal -->
+            <div class="ease-in" *ngIf="settings.params.search.filter < 85">
+                <app-message-box class="active" [icon]="'info'" style="margin-top: 10px;">
+                    <span class="">{{ 'settings.search.matchFilter.levels.normal' | translate }}</span>
+                </app-message-box>
+            </div>
+
+            <!-- Si el nivel del filtro es > 84% -->
+            <div *ngIf="settings.params.search.filter > 84" class="ease-in">
+                <app-message-box class="warning" [icon]="'warning'">
+                    <span>
+                        <span *ngIf="settings.params.search.filter < 100">
+                            {{ 'settings.search.matchFilter.levels.high' | translate }}
+                        </span>
+                        <span *ngIf="settings.params.search.filter > 99">
+                            {{ 'settings.search.matchFilter.levels.strict' | translate }}
+                        </span>
+                        {{ 'settings.search.matchFilter.levels.warning' | translate }}
+                    </span>
+                </app-message-box>
+            </div>
+
+            <!--  -->
+    
+            <!-- Detalles del filtro. -->
+            <div class="ease-in" style="margin-top: 10px;">
+                <span class="title">{{ 'settings.search.details.title' | translate }}</span>
+                <div class="flex-center-spacebetween">
+                    <div>
+                        <span class="spanSubtitle">{{ 'settings.search.details.autoLower.title' | translate }}</span>
+                        <span class="dimmed spanSubtitle">{{ 'settings.search.details.autoLower.description' | translate }}</span>
+                    </div>
+                    <app-switch [(enabled)]="settings.params.search.reduceFilter"
+                                (enabledChange)="settings.updateSettings()"></app-switch>
+                </div>
+            </div>        
+    
+            <!-- Comprobación del filtro. -->
+            <div class="ease-in filterTest" style="margin-top: 10px; display: flex; flex-direction: column;">
+                <span class="title">{{ 'settings.search.filterChecker.title' | translate }}</span>
+                <div style="display: flex; align-items: center; margin-top: 0px;">
+                    <div style="width: 100%;">
+                        <span class="spanSubtitle">{{ 'settings.search.filterChecker.criteria' | translate }}</span>
+                        <input [(ngModel)]="filterTester.criteria"
+                               (ngModelChange)="testFilter()"
+                               (keyUp)="testFilter()"
+                               type="text" style="width: inherit;">
+                            </div>
+                            <div style="width: 100%;">
+                                <span class="spanSubtitle">{{ 'settings.search.filterChecker.result' | translate }}</span>
+                                <input [(ngModel)]="filterTester.result"
+                                (ngModelChange)="testFilter()"
+                                (keyUp)="testFilter()"
+                               id="result" type="text" style="width: inherit;">
+                    </div>
+                </div>
+                <div class="to-bottom flex-column" *ngIf="filterTester.criteria.length > 0 && filterTester.result.length > 0">
+                    <div *ngIf="filterTester.dices >= filterTester.lastTestLevel" class="flex-align-center flex-column ease-in">
+                        <span class="icon done">done_circle</span>
+                        <label class="spanSubtitle">{{ 'settings.search.filterChecker.passedAt' | translate }}
+                            <label *ngIf="filterTester.lastTestLevel < 100">{{ 'settings.search.filterChecker.at' | translate }} {{ filterTester.lastTestLevel }}%.</label>
+                            <label *ngIf="filterTester.lastTestLevel > 99">{{ 'settings.search.filterChecker.strict' | translate }}</label>
+                        </label>
+                    </div>
+                    <div *ngIf="filterTester.dices < filterTester.lastTestLevel" class="flex-align-center flex-column ease-in">
+                        <span class="icon danger">cancel_circle</span>
+                        <label class="spanSubtitle">{{ 'settings.search.filterChecker.notPassed' | translate }}
+                            <label *ngIf="filterTester.lastTestLevel < 100">{{ 'settings.search.filterChecker.at' | translate }} {{ filterTester.lastTestLevel }}%</label>
+                            <label *ngIf="filterTester.lastTestLevel > 99">{{ 'settings.search.filterChecker.strict' | translate }}</label>
+                        </label>
+                    </div>
+                    <span class="spanSubtitle dimmed">{{ 'settings.search.filterChecker.similarity' | translate }}: {{ filterTester.dices }}%</span>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="settings.params.search.filter < 1" class="ease-in" style="margin-top: 10px;">
+            <app-message-box>
+                {{ 'settings.search.matchFilter.levels.0' | translate }}
+            </app-message-box>
+        </div>
+    </div>
+</div>

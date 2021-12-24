@@ -1,0 +1,99 @@
+:root {
+    --b: 255, 255, 255;
+    --t: 10, 14, 24.5;
+}
+
+:root :host-context(.light), .light {
+    --b: 255, 255, 255;
+    --t: 10, 14, 24.5;
+}
+:root :host-context(.dark), .dark {
+    --b: 10, 14, 24.5;
+    --t: 255, 255, 255;
+}
+:root :host-context(.deep-dark), .deep-dark {
+    --b: 0, 0, 0;
+    --t: 255, 255, 255;
+}
+:host-context(.selected) #content {
+    border-color: var(--accent);
+    border-width: 2px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+#content {
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    width: 120px;
+    height: 80px;
+    border-radius: 10px;
+    background: rgb(var(--b));
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(var(--textRGB), 0.2);
+    transition: linear 0.1s;
+}
+
+#sp {
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    border-right: 1px solid rgba(var(--t),0.2);
+}
+
+#sp > div {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--t), 0.2);
+    height: 15px;
+    padding-left: 10px;
+}
+
+#sp > div > div {
+    background: rgba(var(--t), 0.2);
+    width: 20px;
+    height: 5px;
+    border-radius: 5px;
+}
+
+#cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#tb {
+    height: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(var(--t), 0.2);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#tb > div {
+    background: rgb(var(--t));
+    width: 30px;
+    height: 5px;
+}
+
+#cont > :nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#cont > :nth-child(2) > div {
+    width: 25px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+}

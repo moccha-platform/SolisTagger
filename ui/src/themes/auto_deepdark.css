@@ -1,0 +1,12 @@
+@import url(./light_schema.css);
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: white;
+        --textRGB: 255, 255, 255;
+        --background: #000000;
+        --backgroundRGB: 0, 0, 0;
+        --pureDL: black;
+        --pureDLRGB: 0,0,0;
+    }
+}

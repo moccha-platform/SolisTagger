@@ -1,0 +1,117 @@
+#cont {
+    position: relative;
+    height: calc(100% - 54px);
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#badges {
+    display: flex;
+    width: 100%;
+}
+
+#badges > .logo { cursor: pointer; }
+
+#tag {
+    align-items: center;
+    text-align: center;
+}
+
+#trackTitle {
+    overflow: hidden;
+    max-height: 96px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#artwork {
+    width: 200px;
+    border-radius: 20px;
+    /* box-shadow: 0px 20px 17px -10px rgba(var(--accentRGB), .7); */
+    box-shadow: 0px 20px 17px -10px rgba(0,0,0, .7);
+    transition: ease-in-out all .3s;
+    position: relative;
+    z-index: 10;
+}
+
+#artwork:hover {
+    transform: scale(2) translateY(20%);
+    box-shadow: 0px 30px 37px -20px rgba(0,0,0, .4);
+    /* box-shadow: 0px 30px 37px -20px rgba(var(--accentRGB), .4); */
+    border-radius: 3px;
+}
+
+#taggerButtons {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#taggerButtons > .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out transform .1s;
+}
+
+#taggerButtons > .icon:hover {
+    transform: scale(1.2);
+}
+
+#taggerButtons > #label {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+#taggerButtons > #label::after {
+    content: 'label';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border: 1px solid var(--accent);
+    background: rgba(var(--accentRGB), .6);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#taggerButtons > #label::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgb(var(--backgroundRGB));
+}
+
+#taggerButtons > #cancel {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 0, 0, .6);
+    border: 1px solid red;
+    border-radius: 20px;
+    margin-left: -7px;
+    position: relative;
+    z-index: 1;
+}
+
+#taggerButtons > #edit {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 255, .6);
+    border: 1px solid blue;
+    border-radius: 20px;
+    margin-right: -7px;
+    position: relative;
+    z-index: 1;
+}

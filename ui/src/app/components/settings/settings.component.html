@@ -1,0 +1,76 @@
+<div class="settings ease-in">
+
+    <!-- Menú lateral izquierdo. -->
+    <app-sidebar style="width: 340px;" [params]="{ separator: 'right' }">
+
+        <app-title-bar style="padding-top: 30px;">
+            <div class="title pointer" (click)="closeSettings.emit()">
+                <span class="iconButton" *ngIf="files.files.length > 0"
+                    [routerLink]="['/tagger']">chevron_left</span>
+                <h3>{{ 'settings.title' | translate }}</h3>
+            </div>
+        </app-title-bar>
+
+        <!-- Búsqueda -->
+        <app-list-item (click)="status.current = 'search'">
+            <span [ngClass]="{'active': status.current == 'search'}" class="icon iconlist active">search</span>
+            <label [style.font-weight]="status.current == 'search' ? 600 : 'normal'">{{ 'settings.search.title' | translate }}</label>
+        </app-list-item>
+        
+        <!-- Etiquetador  -->
+        <app-list-item (click)="status.current = 'tagger'">
+            <span [ngClass]="{'active': status.current == 'tagger'}" class="icon iconlist">label</span>
+            <label [style.font-weight]="status.current == 'tagger' ? 600 : 'normal'">{{ 'settings.tagger.title' | translate }}</label>
+        </app-list-item>
+        
+        <!-- Interfaz de usuario -->
+        <app-list-item (click)="status.current = 'ui'">
+            <span [ngClass]="{'active': status.current == 'ui'}" class="icon iconlist">console</span>
+            <label [style.font-weight]="status.current == 'ui' ? 600 : 'normal'">{{ 'settings.appearance.title' | translate }}</label>
+        </app-list-item>
+        
+        <!-- Idioma -->
+        <app-list-item (click)="status.current = 'language'">
+            <span [ngClass]="{'active': status.current == 'language'}" class="icon iconlist">flag_alt</span>
+            <label [style.font-weight]="status.current == 'language' ? 600 : 'normal'">{{ 'settings.language.title' | translate }}</label>
+        </app-list-item>
+        
+        <!-- Caché -->
+        <app-list-item (click)="status.current = 'cache'">
+            <span [ngClass]="{'active': status.current == 'cache'}" class="icon iconlist">db</span>
+            <label [style.font-weight]="status.current == 'cache' ? 600 : 'normal'">{{ 'settings.cache.title' | translate }}</label>
+        </app-list-item>
+
+        <!-- APIs -->
+        <app-list-item (click)="status.current = 'apis'">
+            <span [ngClass]="{'active': status.current == 'apis'}" class="icon iconlist">api_connect</span>
+            <label [style.font-weight]="status.current == 'apis' ? 600 : 'normal'">{{ 'settings.apis.title' | translate }}</label>
+        </app-list-item>
+
+        <!-- Actualizaciones -->
+        <app-list-item (click)="status.current = 'updates'">
+            <span [ngClass]="{'active': status.current == 'updates'}" class="icon iconlist">reload</span>
+            <label [style.font-weight]="status.current == 'updates' ? 600 : 'normal'">{{ 'settings.updates.title' | translate }}</label>
+        </app-list-item>
+
+        <!-- Atribuciones (dependencias y colaboradores) -->
+        <app-list-item (click)="status.current = 'attributions'">
+            <span [ngClass]="{'active': status.current == 'attributions'}" class="icon iconlist">face_wink</span>
+            <label [style.font-weight]="status.current == 'attributions' ? 600 : 'normal'">{{ 'settings.attributions.title' | translate }}</label>
+        </app-list-item>
+
+    </app-sidebar>
+    
+    <!-- Contenedor de sección de configuración seleccionada. -->
+    <div id="settings-container">
+        <app-search *ngIf="status.current === 'search'"></app-search>
+        <app-tagger-settings *ngIf="status.current === 'tagger'"></app-tagger-settings>
+        <app-ui *ngIf="status.current === 'ui'"></app-ui>
+        <app-language *ngIf="status.current === 'language'"></app-language>
+        <app-cache *ngIf="status.current === 'cache'"></app-cache>
+        <app-apis *ngIf="status.current === 'apis'"></app-apis>
+        <app-updates *ngIf="status.current === 'updates'"></app-updates>
+        <app-attributions *ngIf="status.current === 'attributions'"></app-attributions>
+    </div>
+
+</div>

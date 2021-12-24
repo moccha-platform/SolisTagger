@@ -1,0 +1,72 @@
+<app-sidebar #sidebar id="sidebar" [params]="{ separator: 'right' }">
+    <section style="overflow: scroll; height: calc(100% + 16px); padding-right: 1px; position: relative;">
+        <div id="untg">
+            <app-title-bar id="untaggeds">
+                <div class="to-bottom" style="display: flex; align-items: center; margin: 5px 0px; width: 100%; justify-content: space-between;">
+                    <!-- <span (click)="status.sidebar = 'hidden'" class="iconButton">chevron_left</span> -->
+                    <h3 class="to-bottom" *ngIf="status.section === 'matchs'" style="white-space: nowrap;">Matchs</h3>
+                    <h3 class="to-bottom" *ngIf="status.section === 'untaggeds'" style="white-space: nowrap;">{{ 'tagger.untagged.title' | translate }}</h3>
+                    <h3 class="to-bottom" *ngIf="status.section === 'taggeds'" style="white-space: nowrap;">Etiquetadas</h3>
+                    <h3 class="to-bottom" *ngIf="status.section === 'files'" style="white-space: nowrap;">Elementos</h3>
+                    <span class="iconButton rotate180" *ngIf="status.showSections" (click)="status.showSections = !status.showSections" style="margin-right: 5px; font-size: 9pt;">chevron_right</span>
+                    <span class="iconButton rotate180" *ngIf="!status.showSections" (click)="status.showSections = !status.showSections" style="margin-right: 5px; font-size: 9pt;">chevron_left</span>
+                </div>
+            </app-title-bar>
+        </div>
+        <div class="ease-in sectionSelector" [ngClass]="{'sectionSelectorHide': status.showSections === false}">
+            <app-list-item (click)="status.section = 'untaggeds'; status.showSections = false">
+                <div class="ellipsis">{{ 'tagger.untagged.title' | translate }}</div>
+                <span class="icon done ease-in" *ngIf="status.section === 'untaggeds'">done_circle</span>
+            </app-list-item>
+            <app-list-item (click)="status.section = 'taggeds'; status.showSections = false">
+                <div class="ellipsis">Etiquetadas</div>
+                <span class="icon done ease-in" *ngIf="status.section === 'taggeds'">done_circle</span>
+            </app-list-item>
+            <app-list-item (click)="status.section = 'matchs'; status.showSections = false">
+                <div class="ellipsis">Matchs</div>
+                <span class="icon done ease-in" *ngIf="status.section === 'matchs'">done_circle</span>
+            </app-list-item>
+            <app-list-item (click)="status.section = 'files'; status.showSections = false">
+                <div class="ellipsis">Elementos</div>
+                <span class="icon done ease-in" *ngIf="status.section === 'files'">done_circle</span>
+            </app-list-item>
+        </div>
+
+        <!-- TODO: Preparar array de elementos sin etiquetar -->
+        <div class="ease-in" *ngIf="status.section === 'taggeds'" style="width: 250px">
+            <app-list-item *ngFor="let file of files.files | tagged:true; let i = index" class="to-bottom" [style]="'animation-delay:'+i*200+'ms'">
+                <div class="ellipsis">{{ file.name }}</div>
+            </app-list-item>
+        </div>
+
+        <!-- TODO: Preparar array de elementos sin etiquetar -->
+        <div class="ease-in" *ngIf="status.section === 'untaggeds'" style="width: 250px">
+            <app-list-item *ngFor="let file of files.files | tagged:false; let i = index" class="to-bottom" [style]="'animation-delay:'+i*200+'ms'">
+                <div class="ellipsis">{{ file.name }}</div>
+            </app-list-item>
+        </div>
+
+        <!-- TODO: Preparar array de elementos de coincidencias -->
+        <div class="ease-in" *ngIf="status.section === 'matchs'" style="width: 250px">
+            <app-list-item>
+                <div class="ellipsis">Match1</div>
+            </app-list-item>
+            <app-list-item>
+                <div class="ellipsis">Match2</div>
+            </app-list-item>
+            <app-list-item>
+                <div class="ellipsis">Match3</div>
+            </app-list-item>
+            <app-list-item>
+                <div class="ellipsis">Match4</div>
+            </app-list-item>
+        </div>
+        
+        <!-- TODO: Preparar array de elementos -->
+        <div *ngIf="status.section === 'files' "style="width: 250px">
+            <app-list-item *ngFor="let file of files.files; let i = index" class="to-bottom" [style]="'animation-delay:'+i*200+'ms'">
+                <div class="ellipsis">{{ file.name }}</div>
+            </app-list-item>
+        </div>
+    </section>
+</app-sidebar>

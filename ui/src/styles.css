@@ -1,0 +1,386 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --main-font: 'Poppins';
+    --primary: #0080FF;
+    --primaryRGB: 0, 128, 255;
+    --accent: #0080FF;
+    --accentRGB: 0, 128, 255;
+    --valid: #00D445;
+    --validRGB: 0, 212, 69;
+    --error: #FF004A;
+    --errorRGB: 255, 0, 74;
+    --warning: #ffbc00;
+    --warningRGB: 255, 188, 0;
+}
+
+* {
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: var(--main-font);
+    -webkit-user-drag: none;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+}
+
+body {
+    margin: 0;
+    /* overflow: hidden; */
+    /* background: rgb(var(--backgroundRGB)); */
+    background: rgb(var(--backgroundRGB));
+    color: var(--text);
+    width: 100%;
+    height: 100%;
+}
+
+.active {
+    color: var(--accent);
+}
+
+.done {
+    color: var(--valid);
+}
+
+.danger {
+    color: var(--error);
+}
+
+.warning {
+    color: var(--warning);
+}
+
+.icon {
+    font-family: 'Solis Falco UI Icons';
+    font-weight: normal;
+}
+
+.iconButton {
+    outline: none;
+    font-family: 'Solis Falco UI Icons';
+    border: 1px solid rgba(var(--textRGB), .2);
+    padding: 5px;
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 9pt;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconButton:hover {
+    border: 1px solid var(--text);
+    background: var(--text);
+    color: var(--background);
+}
+
+.iconButton:active {
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+}
+
+.logo {
+    height: 16px;
+}
+
+.dimmed {
+    opacity: 0.4;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bordered {
+    border: 1px solid rgba(var(--textRGB), 0.2);
+}
+
+.flex-center-spaceevenly {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.flex-perfect-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-center-spacebetween {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.flex-column { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-column-r { display: flex; flex-direction: column-reverse; }
+.flex-row-r { display: flex; flex-direction: row-reverse; }
+
+.flex-align-center { display: flex; align-items: center; }
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.ease-in {
+    animation: easein 0.25s linear;
+}
+
+.to-bottom {
+    animation-name: tobottom;
+    animation-duration: 0.25s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+.amplified {
+    animation-name: amplified;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin: 5px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(var(--background));
+    border: 1px solid var(--text);
+    box-sizing: border-box;
+    padding: 7px 20px;
+    border-radius: 10px;
+    margin: 0px;
+    color: var(--text);
+    transition: linear 0.05s;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background: var(--text);
+    border: 1px solid var(--text);
+    color: var(--background);
+}
+
+button:active {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: white;
+}
+button:active > * {
+    color: white;
+}
+
+.cta {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: white;
+}
+
+.disabled {
+    cursor: not-allowed;
+    background: rgba(var(--textRGB), .2);
+    border: 1px solid rgba(var(--textRGB), .2);
+    color: rgba(var(--textRGB), .2)
+}
+
+.disabled:hover {
+    background: rgba(var(--textRGB), .2);
+    border: 1px solid rgba(var(--textRGB), .2);
+    color: rgba(var(--textRGB), .2)
+}
+
+input {
+    background: rgb(var(--background));
+    border: 1px solid var(--text);
+    box-sizing: border-box;
+    padding: 4px 15px;
+    border-radius: 10px;
+    margin: 0px;
+    color: var(--text);
+    transition: linear 0.05s;
+    outline: none;
+}
+
+input[type=text]:focus::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background: red;
+
+}
+
+input:hover {
+    background: rgba(var(--textRGB), 0.1);
+}
+
+input:focus {
+    background: rgb(var(--textRGB));
+    border: 1px solid rgb(var(--textRGB));
+    color: rgb(var(--backgroundRGB));
+}
+
+@font-face {
+    font-family: 'Solis Falco UI Icons';
+    src: url('./assets/fonts/SolisFalcoIcons-outlined.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Thin.ttf');
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-ExtraLight.ttf');
+    font-weight: 200;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Light.ttf');
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Medium.ttf');
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-SemiBold.ttf');
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf');
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-ExtraBold.ttf');
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 10px;
+    padding: 5px 0px;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    /* background: rgba(var(--textRGB), 0.1) */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--accent);
+}
+
+progress {
+    background: rgba(var(--textRGB), 0.2);
+    height: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+progress::-webkit-progress-bar {
+    border-radius: 10px;
+    background: transparent;
+}
+
+progress::-moz-progress-bar {
+    border-radius: 10px;
+    background: var(--accent);
+}
+
+progress::-webkit-progress-value {
+    border-radius: 10px;
+    background: var(--accent);
+}
+
+@keyframes easein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tobottom {
+    0% {
+        transform: translate(0%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0%, -0%);
+        opacity: 1;
+    }
+}
+
+@keyframes amplified {
+    0% {
+        transform: scale(0%);
+    }
+    100% {
+        transform: scale(100%);
+    }
+}
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --text: white;
+        --textRGB: 255, 255, 255;
+        --background: #0d1117;
+        --backgroundRGB: 10, 14, 24.5;
+        --pureDL: black;
+        --pureDLRGB: 0,0,0;
+    }
+} */

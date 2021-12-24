@@ -1,0 +1,6 @@
+#titlebar {
+    width: 100vw;
+    height: 20px;
+    margin-bottom: -20px;
+    -webkit-app-region: drag;
+}

@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/*js": {"when": "$(basename).ts"},
+        //"**/*js.map": {"when": "$(basename)",},
+        "**/.vscode": true,
+        "**/.git": false,
+        ".github": false,
+        "node_modules": false,
+        ".gitignore": false,
+        "package.json":false,
+        "package-lock.json":false,
+    },
+    "angular.enable-strict-mode-prompt": false,
+}

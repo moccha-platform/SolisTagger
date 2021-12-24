@@ -1,11 +1,16 @@
 {
   "name": "solis-tagger",
-  "description": "Sencillo etiquetador ID3 para canciones.",
-  "version": "0.0.2",
+  "description": "Sencillo etiquetador ID3 para canciones basado en tecnologías web.",
+  "version": "0.2.2",
+  "phase": "alpha",
+  "versionSerial": 1,
+  "buildDate": "6/10/2021",
   "main": "main.js",
   "scripts": {
-    "build": "cd frontend && ng build --prod --outputPath='../ui'",
-    "start": "electron .",
+    "build": "cd ./ui && ng build --outputPath='../ui'",
+    "start": "electron . --inspect",
+    "serve": "cd ./ui && ng serve --port=5000",
+    "watch": "tsc --watch",
     "buildLinuxARMV7l": "electron-builder --linux --armv7l",
     "buildLinux64": "electron-builder --linux --x64",
     "buildLinuxia32": "electron-builder --linux --ia32",
@@ -15,20 +20,25 @@
   },
   "author": "Marcos Rodríguez <marcosylrg@gmail.com>",
   "dependencies": {
-    "colors": "^1.4.0",
-    "deezer-public-api": "^1.0.4",
-    "node-fetch": "^2.6.1",
+    "axios": "^0.22.0",
+    "mmmagic": "^0.5.3",
+    "nedb-promises": "^5.0.1",
     "node-id3": "^0.2.2",
-    "searchitunes": "^2.4.0",
     "string-similarity": "^4.0.4"
   },
   "devDependencies": {
+    "@types/mmmagic": "^0.4.30",
+    "@types/source-map-support": "^0.5.4",
+    "@types/string-similarity": "^4.0.0",
     "electron": "^12.0.5",
-    "electron-builder": "^22.10.5"
+    "electron-builder": "^22.10.5",
+    "electron-rebuild": "^3.2.0",
+    "source-map-support": "^0.5.19"
   },
   "build": {
     "productName": "Solis Tagger",
-    "appId": "com.solis.tagger",
+    "appId": "dev.moccha.tagger",
+    "icon": "assets/icon.png",
     "asar": true,
     "directories": {
       "output": "../output"
@@ -46,19 +56,19 @@
           "path": "/Applications"
         }
       ],
-      "icon": "build/icon.icns",
-      "background": "build/background.png"
+      "icon": "assets/icon.icns",
+      "background": "assets/background.png"
     },
     "linux": {
       "target": [
         "deb",
         "rpm"
       ],
-      "icon": "build/icon.icns"
+      "icon": "assets/icon.png"
     },
     "win": {
       "target": "NSIS",
-      "icon": "build/icon.ico"
+      "icon": "assets/icon.ico"
     }
   }
 }

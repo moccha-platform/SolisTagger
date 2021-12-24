@@ -1,0 +1,28 @@
+<div id="language">
+    <app-title-bar>
+        <h3 class="to-bottom" style="margin-left: 25px;">{{ 'settings.language.title' | translate }}</h3>
+    </app-title-bar>
+    <div class="content ease-in">
+        <h1 style="margin: 0px;">{{ 'settings.language.langs.'+translate.translate.currentLang | translate }}</h1>
+        <div class="msg-switch" style="margin-top: 10px;">
+            <div>
+                <span class="spanSubtitle">{{ 'settings.language.auto.title' | translate }}</span>
+                <span class="dimmed spanSubtitle">{{ 'settings.language.auto.description' | translate }}</span>
+            </div>
+            <app-switch [(enabled)]="settings.params.language.auto"
+                        (enabledChange)="setLang(settings.params.language.auto)"></app-switch>
+        </div>
+        <div class="bordered" style="margin-top: 5px; border-radius: 10px; background: rgba(var(--textRGB), 0.05);">
+            <app-list-item *ngFor="let lang of translate.translate.getLangs()"
+            (click)="setLang(lang)">
+                <span
+                [ngClass]="{'current': translate.translate.currentLang === lang}">
+                    {{ 'settings.language.langs.'+lang | translate }}
+                </span>
+            </app-list-item>
+        </div>
+        <div class="flex flex-perfect-center">
+            <button class="disabled" style="margin-top: 10px;"><span class="icon" style="margin-right: 3px;">cloud</span> {{ 'settings.language.download' | translate }}</button>
+        </div>
+    </div>
+</div>

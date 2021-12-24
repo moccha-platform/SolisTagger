@@ -1,0 +1,26 @@
+<!-- Contenedor principal para el Drag&Drop y sus elementos hijos -->
+<div class="dragBox flex-perfect-center flex-column ease-in" style="height: 100%;"
+appDrag (fileDrop)="fileDrop($event)" (fileOver)="status.dragIn = $event">
+
+    <!-- Mensaje del Drag&Drop. -->
+    <div class="flex-perfect-center flex-column ease-in" *ngIf="!status.dragIn">
+        <h1 class="icon active" style="font-size: 28pt;">music</h1>
+        <h3>{{ 'file.dragndrop.dragMessage' | translate }}</h3>
+    </div>
+
+    <!-- Mensaje del Drag&Drop en estado dragIn (cuando el elemento está encima) -->
+    <div *ngIf="status.dragIn" class="flex-perfect-center flex-column ease-in">
+        <label class="dimmed">{{ 'file.dragndrop.dropMessage' | translate }}</label>
+    </div>
+
+    <!-- Botón para retroceder cuando la longitud de la matriz de elementos es superior a 0. -->
+    <div *ngIf="files.files.length > 0" id="returnList">
+        <button [routerLink]="['selector']">{{ 'file.dragndrop.cancel' | translate }}</button>
+    </div>
+
+</div>
+
+<!-- Mensaje de análisis de elementos. -->
+<div *ngIf="status.waiting" class="flex-perfect-center flex-column ease-in wait">
+    <h3>Comprobando archivos</h3>
+</div>

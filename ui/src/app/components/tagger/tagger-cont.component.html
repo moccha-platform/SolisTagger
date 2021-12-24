@@ -1,0 +1,34 @@
+<div class="tagger ease-in">
+    
+    <app-sidebar-tagger #sidebar class="sidebar" [ngClass]="{'sidebarHidden': sidebar.status.sidebar == 'hidden'}"></app-sidebar-tagger>
+
+    <div class="tagCont">
+        <app-title-bar id="topBar" style="width: 100%;">
+            <div class="flex-perfect-center to-bottom" style="min-height: 54px;">
+                <span *ngIf="sidebar.status.sidebar == 'hidden' && files.files.length > 1" class="iconButton rotate180"
+                style="margin-right: 5px; margin-left: 5px;"
+                (click)="sidebar.status.sidebar = 'visible'">chevron_left</span>
+
+                <span *ngIf="sidebar.status.sidebar == 'visible' && files.files.length > 1" class="iconButton rotate180"
+                style="margin-right: 5px; margin-left: 5px;"
+                (click)="sidebar.status.sidebar = 'hidden'">chevron_right</span>
+
+                <div id="artist" *ngIf="tagger.currentTag.tag">
+                    <div class="icon flex-perfect-center">music</div>
+                    <h3>{{ tagger.currentTag.tag.artistName }}</h3>
+                </div>
+            </div>
+            <div id="buttonsTopBar" style="display: flex; flex-direction: row;">
+                <span [title]="'file.selector.add' | translate" [routerLink]="['/file']" class="iconButton">add</span>
+                <!-- <span class="iconButton">label</span> -->
+                <span [title]="'settings.title' | translate" class="iconButton" [routerLink]="['/settings']">settings_gear_alt</span>
+            </div>
+        </app-title-bar>
+
+        <app-tagger class="ease-in" *ngIf="!tagger.currentTag.waiting && tagger.currentTag.tag"></app-tagger>
+        <div style="padding: 10px" *ngIf="tagger.currentTag.waiting && !tagger.currentTag.tag">
+            <app-spinner [message]="'Buscando datos'"></app-spinner>
+            <button (click)="tagger.requestTag(files.files[0])">Forzar búsqueda</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+body {
+    overflow: scroll !important;
+}
+
+section > #header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin: 0px;
+    padding: 7px 5px;
+    border-bottom: 1px solid rgba(var(--textRGB), 0.2);
+    background: rgba(var(--backgroundRGB), 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header > div {
+    display: flex;
+    align-items: center;
+}
+
+#header > h3 {
+    font-weight: 500;
+}
+
+#header > div > .iconButton {
+    margin-left: 5px;
+}
+
+#header > div > div:hover {
+    color: var(--accent);
+}
+
+#header > div > div > span {
+    color: inherit;
+}
+
+#header > div > div:last-child {
+    margin-right: 5px;
+    margin-left: 2px;
+}
+
+#file {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overflow {
+    -webkit-animation: overflow;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    will-change: tranform;
+}
+
+.overflow::after {
+    content: attr(data-after);
+    margin-left: 20px;
+}
+
+.overflowGrads {
+    position: relative;
+}
+.overflowGrads::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(
+        to right,
+        rgb(var(--backgroundRGB)),
+        rgba(var(--backgroundRGB), 0)
+    );
+    z-index: 1;
+}
+.overflowGrads::after {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: calc(100% - 30px);
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(
+        to left,
+        rgb(var(--backgroundRGB)),
+        rgba(var(--backgroundRGB), 0)
+    );
+    z-index: 1;
+}
+
+@keyframes overflow {
+    0% {
+        transform: translateX(20%);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}

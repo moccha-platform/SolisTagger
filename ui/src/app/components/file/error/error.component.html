@@ -1,0 +1,12 @@
+<div class="flex-perfect-center flex-column cont ease-in">
+    <h1 class="icon warning">notification</h1>
+    <h3>Se ha producido un error</h3>
+    <span *ngIf="!mime" class="to-bottom">El elemento no es compatible.</span>
+    <span *ngIf="mime && mime !== 'application/octet-stream'" class="mime dimmed">{{ mime }} no es un tipo de MIME soportado.</span>
+    <span *ngIf="mime && mime === 'application/octet-stream'" class="mime dimmed">No se puede determinar si este archivo es un elemento de audio.</span>
+
+    <div class="flex-perfect-center" style="margin-top: 10px;">
+        <button style="margin-right: 5px;" *ngIf="mime === 'application/octet-stream'">Intentarlo</button>
+        <button style="margin-left: 5px;">Omitir</button>
+    </div>
+</div>

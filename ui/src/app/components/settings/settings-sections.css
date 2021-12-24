@@ -1,0 +1,23 @@
+.content {
+    padding: 20px 30px;
+}
+
+span {
+    display: block;
+}
+
+.spanSubtitle {
+    font-weight: 400;
+    font-size: 9pt;
+}
+
+.title {
+    font-weight: 600;
+    padding-left: 0;
+}
+
+.msg-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,52 @@
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    height: 10px;
+    border: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: var(--shadows);
+    transform: translate(0%,-50%);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+input[type=range]::-webkit-slider {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.filterTest > :nth-child(2) > :first-child {
+    margin-right: 5px;
+}
+.filterTest > :nth-child(2) > :last-child {
+    margin-left: 5px;
+}
+
+.filterTest > :last-child{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.filterTest > :last-child > div > label {
+    margin-left: 10px;
+}

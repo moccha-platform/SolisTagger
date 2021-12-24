@@ -1,0 +1,70 @@
+<div id="tagger-settings">
+    <app-title-bar>
+        <h3 class="to-bottom" style="margin-left: 25px;">{{ 'settings.tagger.title' | translate }}</h3>
+    </app-title-bar>
+
+    <div class="content ease-in">
+        <div>
+            <span>Parámetros</span>
+            <div style="display: flex; align-items: center;">
+                <div style="width: 100%;">
+                    <span class="spanSubtitle">Renombrar el elemento al etiquetar</span>
+                    <span class="spanSubtitle dimmed">La pista de audio tentrá como nombre el título del artista seguido del nombre de pista</span>
+                </div>
+                <app-switch [enabled]="true"></app-switch>
+            </div>
+            <div style="display: flex; align-items: center; margin-top: 5px;">
+                <div style="width: 100%;">
+                    <span class="spanSubtitle">Crear biblioteca</span>
+                    <span class="spanSubtitle dimmed">Por cada artista, se creará una nueva carpeta (si no existe) y se moverán las pistas</span>
+                </div>
+                <app-switch [enabled]="true"></app-switch>
+            </div>
+        </div>
+        <span style="margin-top: 10px;">Exclusión de metadatos</span>
+        <div class="bordered" style="margin-top: 5px; border-radius: 10px; background: rgba(var(--textRGB), 0.05);">
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Año de lanzamiento de la pista</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Posición de la pista en el album</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Total de pistas en el album</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Beats por minuto (BPM - Requiere la API de Deezer)</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Enlace de compra a iTunes (Requiere la API de iTunes)</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Marca de contenido explícito</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+            <app-list-item class="spanSubtitle">
+                <div style="width: 100%;" class="flex-center-spacebetween">
+                    <span>Género</span>
+                    <app-switch></app-switch>
+                </div>
+            </app-list-item>
+        </div>
+    </div>
+</div>

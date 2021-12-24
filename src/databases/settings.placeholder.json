@@ -1,0 +1,34 @@
+{
+    "params": {
+        "search": {
+            "filter": 65,
+            "reduceFilter": true
+        },
+        "tagger": {
+            "renameFile": true,
+            "buildLibrary": false,
+            "excludeMeta": []
+        },
+        "language": {
+            "selected": "en",
+            "auto": true
+        },
+        "cache": {
+            "enabled": true
+        }, 
+        "appearance": {
+            "mode": "dark",
+            "auto": true,
+            "primary": "#0080FF"
+        },
+        "updates": {
+            "autoUpdate": true
+        }
+    },
+    "renderer": {
+        "window": {
+            "width": 900,
+            "height": 600
+        }
+    }
+}

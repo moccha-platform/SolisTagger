@@ -1,0 +1,78 @@
+.sidebar {
+    width: 250px;
+    transition: all .4s ease-in-out;
+    will-change: width;
+}
+
+app-sidebar-tagger {
+    width: 250px;
+    transition: all .4s ease-in-out;
+    will-change: width;
+}
+
+.tagger {
+    display: flex;
+    overflow-y: hidden;
+    height: 100%;
+    /* display: flex;
+    flex-direction: row;
+    background: rgba(255, 0, 50, .1);
+    position: relative; */
+}
+
+.sidebarHidden {
+    width: 0px;
+}
+
+.tagCont {
+    width: 100%;
+    overflow-y: hidden;
+    /* position: relative;
+    height: 100%;
+    background: rgba(255, 0, 50, .1); */
+}
+
+#artist {
+    display: flex;
+    align-items: center;
+}
+
+#artist > :first-child {
+    background: rgba(var(--textRGB), .2);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+#buttonsTopBar > * {
+    margin-left: 7px;
+}
+
+#taggerCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.rotate180 {
+    animation: rotate_180 .3s ease-in-out forwards;
+    will-change: tranform;
+}
+
+@keyframes rotate_180 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@media (min-width: 1030px) {
+    app-sidebar {
+        width: 300px;
+    }
+}

@@ -1,0 +1,10 @@
+#changelog {
+    max-height: 300px;
+    height: 300px;
+}
+
+::ng-deep #changelog > div {
+    height: 300px;
+    max-height: 250px;
+    overflow-y: scroll;
+}

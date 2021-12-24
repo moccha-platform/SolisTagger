@@ -1,0 +1,17 @@
+.cont {
+    height: 100%;
+    padding: 10px;
+}
+
+span {
+    display: block;
+    text-align: center;
+}
+
+.mime {
+    font-size: 9pt;
+}
+
+button {
+    width: 100px;
+}

@@ -1,7 +1,7 @@
-<center>
-<img src="./build/icon.png" width="100">
+<div align="center">
+<img src="./assets/icon.png" width="100">
 <h1>Solis Tagger</h1>
-</center>
+</div>
 
 Solis Tagger es un etiquetador ID3v2 para añadir metadatos a cualquier elemento mp3, forma parte del módulo de etiquetado de Solis.
 

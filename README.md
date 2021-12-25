@@ -11,7 +11,7 @@ Está desarrollado con electron para que pueda ser usado en cualquier plataforma
 
 En la rama dev se está llevando a cabo un rediseño completo de la aplicación.
 
-A continuación se detalla lo que se ha llevado a cabo hasta ahora:
+A continuación se detalla lo que se ha llevado a cabo hasta ahora y tareas que aún están por realizar:
 
 - <strong>Rediseño completo del proceso principal</strong>:
     - Ahora se usa TypeScript como lenguaje principal.

@@ -11,6 +11,8 @@
     "start": "electron . --inspect",
     "serve": "cd ./ui && ng serve --port=5000",
     "watch": "tsc --watch",
+    "install": "npm i && cd ./ui && npm i",
+    "rebuild-electron": "electron-rebuild",
     "buildLinuxARMV7l": "electron-builder --linux --armv7l",
     "buildLinux64": "electron-builder --linux --x64",
     "buildLinuxia32": "electron-builder --linux --ia32",
